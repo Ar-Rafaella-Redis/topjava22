@@ -12,26 +12,36 @@
 <html>
 <head>
     <title>Meals</title>
+    <style>
+    .normal{color:green;}
+    .exceeded{color:red;}
+    </style>
 </head>
 <h3><a href="index.html">Home</a></h3>
 <body>
+<p><a href="edit.jsp?action=insert">Add meal</a></p>
 <div align="left">
-    <table border="1" cellpadding="2">
+    <table border="1" cellpadding="4">
         <caption><h2>List of meals</h2></caption>
         <tr>
             <th>Date</th>
             <th>Description</th>
             <th>Calories</th>
+            <th></th>
+            <th></th>
         </tr>
         <%--@elvariable id="meals" type="java.util.List"--%>
          <c:forEach items="${meals}" var="meal" >
             <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.MealTo"/>
-            <tr style="${meal.excess? 'color:red' : 'color:green'}">
+            <tr class="${meal.excess? 'exceeded' : 'normal'}">
                 <td><fmt:parseDate value="${meal.dateTime}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
-                    <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }" /></td>
+                    <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }"/></td>
                 <td><c:out value="${meal.description}" /></td>
                 <td><c:out value="${meal.calories}" /></td>
-           </tr>
+                <td><a href="meals?action=edit&mealId=<c:out value="${meal.id}"/>">Update</a></td>
+                <td><a href="meals?action=delete&mealId=<c:out value="${meal.id}"/>">Delete</a></td>
+            </tr>
+         </tr>
         </c:forEach>
     </table>
 </div>
