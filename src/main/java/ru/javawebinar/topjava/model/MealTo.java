@@ -21,6 +21,10 @@ public class MealTo {
         this.excess = excess;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
