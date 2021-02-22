@@ -2,6 +2,8 @@ package ru.javawebinar.topjava.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.lang.Nullable;
+import org.springframework.util.StringUtils;
 import ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepository;
 
 import java.time.LocalDate;
@@ -31,6 +33,13 @@ public class DateTimeUtil {
               return localDate != null ? localDate.plus(1, ChronoUnit.DAYS).atStartOfDay() : MAX_DATE;
     }
 
+    public static @Nullable LocalDate parseLocalDate(@Nullable String str) {
+                return StringUtils.hasLength(str) ? LocalDate.parse(str) : null;
+    }
+
+    public static @Nullable LocalTime parseLocalTime(@Nullable String str) {
+                return StringUtils.hasLength(str) ? LocalTime.parse(str) : null;
+    }
 }
 
 

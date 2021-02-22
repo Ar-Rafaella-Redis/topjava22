@@ -23,19 +23,21 @@
     <h2>Meals</h2>
     <form action="meals?">
       <input type="hidden" name="action" value="filter">
-      <table border="0" cellpadding="8" cellspacing="0">
-            <tr>
-                <th>Дата с:  <input type="date" name="startDate"/></th>
-                <th>Дата по: <input type="date" name="endDate"/></th>
-            </tr>
-            <tr>
-                <th>Время с:  <input type="time" name="startTime" value="00:01" min="00:01" max="23:59"/></th>
-                <th>Время по: <input type="time" name="endTime" value="23:59" min="00:01" max="23:59"/></th>
-            </tr>
-            <tr colspan="2">
-                <input type="submit" value="Отправить"></p>
-            </tr>
-        </table>
+           <dl>
+                <dt>Дата с:</dt>
+                <dd> <input type="date" name="startDate" value="${param.startDate}"/></dd>
+            </dl>
+            <dl>
+                <dt>Дата по:</dt>
+                <dd><input type="date" name="endDate" value="${param.endDate}"/></dd>
+            </dl>
+            <dl>
+                <dt>Время с:</dt>
+                <dd><input type="time" name="startTime"  value="${param.startTime}"/></dd>
+                <dt>Время по:</dt>
+                <dd><input type="time" name="endTime" value="${param.startTime}"/></dd>
+            </dl>
+            <button type="submit">Выбрать</button>
     </form>
     <a href="meals?action=create">Add Meal</a>
     <br><br>

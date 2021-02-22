@@ -37,7 +37,7 @@ public class MealsUtil {
 
     public static List<MealTo> filterByPredicate(Collection<Meal> mealsF, int caloriesPerDay, Predicate<Meal> filter) {
 
-        Map<LocalDate, Integer> caloriesSumByDate = meals.stream()
+        Map<LocalDate, Integer> caloriesSumByDate = mealsF.stream()
                 .collect(
                         Collectors.groupingBy(Meal::getDate, Collectors.summingInt(Meal::getCalories))
 //                      Collectors.toMap(Meal::getDate, Meal::getCalories, Integer::sum)
