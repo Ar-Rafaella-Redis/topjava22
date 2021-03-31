@@ -25,7 +25,7 @@
         <bean id="dataSource"
               class="org.springframework.jdbc.datasource.DriverManagerDataSource"
               p:driverClassName="org.hsqldb.jdbcDriver"
-              p:url="${database.url}"
+              p:url="jdbc:hsqldb:mem:topjava22"
               p:username="${database.username}"
               p:password="${database.password}"/>
     </beans>
