@@ -57,4 +57,10 @@ public class DataJpaMealRepository implements MealRepository {
         meals.sort(Comparator.comparing(Meal::getDateTime).reversed());
         return meals;
     }
+
+    public Meal getWithMeal(int id, int userId) {
+       // Meal meal = crudRepository.findById(id).orElse(null);
+       // return (meal != null && meal.getUser().getId() == userId)? meal : null;
+        return crudRepository.getWithUser(id,userId);
+    }
 }
