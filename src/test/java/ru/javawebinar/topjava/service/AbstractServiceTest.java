@@ -1,10 +1,13 @@
 package ru.javawebinar.topjava.service;
 
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
 import org.junit.rules.Stopwatch;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
@@ -15,6 +18,7 @@ import ru.javawebinar.topjava.TimingRules;
 
 import static org.junit.Assert.assertThrows;
 import static ru.javawebinar.topjava.util.ValidationUtil.getRootCause;
+import ru.javawebinar.topjava.Profiles;
 
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",
@@ -24,6 +28,13 @@ import static ru.javawebinar.topjava.util.ValidationUtil.getRootCause;
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 @ActiveProfiles(resolver = ActiveDbProfileResolver.class)
 abstract public class AbstractServiceTest {
+
+    @Autowired
+    private Environment environment;
+
+    public boolean isJpaBased() {
+        return environment.acceptsProfiles(org.springframework.core.env.Profiles.of(Profiles.JPA,Profiles.DATAJPA));
+    }
 
     @ClassRule
     public static ExternalResource summary = TimingRules.SUMMARY;
